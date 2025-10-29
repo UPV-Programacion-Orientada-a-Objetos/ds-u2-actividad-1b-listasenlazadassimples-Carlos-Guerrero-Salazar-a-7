@@ -1,13 +1,11 @@
+#include <iostream>
+#include <thread>
 #include "SensorBase.h"
 #include "SensorTemperatura.h"
 #include "SensorPresion.h"
 #include "ArduinoSerial.h"
 #include "ListaGeneral.h"
-#include <iostream>
-#include <thread>
 
-template <typename T>
-T leerDatosArduino(ArduinoSerial* arduino,T tipo_valor);
 int main(){
     std::cout << "\n*** Conectando el Arduino ***\n" << std::endl;
     
@@ -31,47 +29,43 @@ int main(){
         std::cin>>opcion;
         switch(opcion){
             case 1:
+                {
                 std::cout<<"agarrando el sensor de temperatura..."<<std::endl;
                 char* linea = arduino->leerLinea();
                 if (linea != nullptr) {
-                    float valor = arduino->procesarDatos<float>(linea);
+                    float valor = arduino->procesarDatos<float>();
                     ((SensorPresion*)SensorPres)->agregarLectura(valor);
                 }
                 break;
-            case 2:
+                }
+            case 2:{
                 std::cout<<"agarrando el sensor de presion..."<<std::endl;
-                ((SensorPresion*)SensorPres)->agregarLectura(arduino->procesarDatos<int>(arduino->leerLinea()));
+                ((SensorPresion*)SensorPres)->agregarLectura(arduino->procesarDatos<int>());
                 break;
-            case 3:
+            }
+            case 3:{
                 std::cout<<"Registrando lectura en Sensor de Temperatura..."<<std::endl;
                 sensorTemp->imprimirInfo();
+                SensorPres->imprimirInfo();
                 break;
-            case 4:
+            }
+            case 4:{
                 std::cout<<"Ejecutando procesamiento polimórfico..."<<std::endl;
                 ((SensorTemperatura*)sensorTemp)->procesarLectura();
                 ((SensorPresion*)SensorPres)->procesarLectura();
                 break;
-            case 5:
+            }
+            case 5:{
                 std::cout<<"Cerrando sistema y liberando memoria..."<<std::endl;
                 delete sensorTemp;
                 delete SensorPres;
                 break;
-            default:
+            }
+            default:{
                 std::cout<<"Opción inválida. Intente de nuevo."<<std::endl;
                 break;
-        }
-    }
-
-}
-
-template <typename T>
-void leerDatosArduino(ArduinoSerial* arduino, T tipo_valor){
-    while (true) {
-        std::string data = arduino->readLine();
-        if (!data.empty()) {
-            arduino->processData(data,T valor){
-                sensorTemp->agregarLectura(valor);
             }
         }
     }
+
 }
