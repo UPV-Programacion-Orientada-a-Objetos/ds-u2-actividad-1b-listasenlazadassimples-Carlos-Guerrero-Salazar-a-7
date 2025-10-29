@@ -2,6 +2,7 @@
 #include "SensorTemperatura.h"
 #include "SensorPresion.h"
 #include "ArduinoSerial.h"
+#include "ListaGeneral.h"
 #include <iostream>
 #include <thread>
 
@@ -13,9 +14,12 @@ int main(){
     // Intentar conectar con Arduino
     const char* puerto = "/dev/ttyUSB0";
     ArduinoSerial* arduino = new ArduinoSerial(puerto);
-    SensorTemperatura* sensorTemp = new SensorTemperatura("Sensor de Temperatura");
-    SensorPresion* sensorPres = new SensorPresion("Sensor de Presion");
-    int opcion = 0; 
+    ListaGeneral* listaPrincipal = new ListaGeneral();
+    SensorBase* sensorTemp = new SensorTemperatura("T-001");
+    SensorBase* SensorPres = new SensorPresion("P-105");
+    listaPrincipal->agregar(sensorTemp);  // Agrega SensorTemperatura* como SensorBase*
+    listaPrincipal->agregar(SensorPres);
+    int opcion = 0;
     while(opcion!=5){
         std::cout<<"Simulación de Interacción"<<std::endl;
         std::cout<<"1. Crear Sensor (Tipo Temp - FLOAT)"<<std::endl;
@@ -28,11 +32,15 @@ int main(){
         switch(opcion){
             case 1:
                 std::cout<<"agarrando el sensor de temperatura..."<<std::endl;
-                sensorTemp->agregarLectura(arduino->procesarDatos<float>(arduino->leerLinea()));
+                char* linea = arduino->leerLinea();
+                if (linea != nullptr) {
+                    float valor = arduino->procesarDatos<float>(linea);
+                    ((SensorPresion*)SensorPres)->agregarLectura(valor);
+                }
                 break;
             case 2:
                 std::cout<<"agarrando el sensor de presion..."<<std::endl;
-                sensorPres->agregarLectura(arduino->procesarDatos<int>(arduino->leerLinea()));
+                ((SensorPresion*)SensorPres)->agregarLectura(arduino->procesarDatos<int>(arduino->leerLinea()));
                 break;
             case 3:
                 std::cout<<"Registrando lectura en Sensor de Temperatura..."<<std::endl;
@@ -40,13 +48,13 @@ int main(){
                 break;
             case 4:
                 std::cout<<"Ejecutando procesamiento polimórfico..."<<std::endl;
-                sensorTemp->procesarLectura();
-                sensorPres->procesarLectura();
+                ((SensorTemperatura*)sensorTemp)->procesarLectura();
+                ((SensorPresion*)SensorPres)->procesarLectura();
                 break;
             case 5:
                 std::cout<<"Cerrando sistema y liberando memoria..."<<std::endl;
                 delete sensorTemp;
-                delete sensorPres;
+                delete SensorPres;
                 break;
             default:
                 std::cout<<"Opción inválida. Intente de nuevo."<<std::endl;
