@@ -24,4 +24,4 @@ public:
     ~SensorTemperatura() override;
 };
 
-#endif // SENSORTEMPERATURA_H
+#endif

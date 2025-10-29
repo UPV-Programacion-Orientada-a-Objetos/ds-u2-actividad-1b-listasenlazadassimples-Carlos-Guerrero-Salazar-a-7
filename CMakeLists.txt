@@ -17,7 +17,3 @@ set(SOURCES
 
 # Ejecutable
 add_executable(sensor_system ${SOURCES})
-
-# Biblioteca para serial (si usas una externa)
-# find_package(SerialPort REQUIRED)
-# target_link_libraries(sensor_system SerialPort)

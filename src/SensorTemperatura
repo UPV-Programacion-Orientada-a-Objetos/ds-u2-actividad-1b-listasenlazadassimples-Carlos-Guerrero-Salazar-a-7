@@ -60,7 +60,7 @@ void SensorTemperatura::procesarLectura() {
         actual = actual->siguiente;
     }
     
-    std::cout << "Eliminando lectura mínima: " << nodoMinimo->dato << "°C" << std::endl;
+    std::cout << "lectura mínima a eliminar: " << nodoMinimo->dato << std::endl;
     
     // Eliminar el nodo mínimo
     lecturas.eliminarNodo(anteriorMinimo, nodoMinimo);
