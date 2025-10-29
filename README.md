@@ -12,7 +12,6 @@ El sistema debe superar dos grandes limitaciones de diseño:
 * **Rigidez de la Estructura:** Se necesita una estructura de datos que se adapte al número variable de lecturas.
 
 El objetivo es crear una Jerarquía de Clases Polimórfica que gestione Listas Enlazadas Simples Genéricas (`ListaSensor<T>`). El diseño debe permitir que cualquier tipo de sensor (subclase) pueda ser agregado a una única lista de gestión, forzando la implementación de métodos esenciales a través de Clases Abstractas.
-
 ---
 
 ## Temas Relacionados y Necesarios
@@ -23,7 +22,7 @@ Para resolver este caso de estudio, los alumnos deberán dominar la integración
 | :------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | POO Avanzada: Jerarquía Polimórfica  | Clase Base Abstracta (`SensorBase`) con métodos virtuales puros. Uso de Herencia para crear sensores específicos (`SensorTemperatura`, `SensorPresion`).                                                  |
 | Listas Enlazadas Simples      | Implementación de una Lista Enlazada Genérica (`ListaSensor<T>`) para almacenar las lecturas (`T`**`) de forma dinámica. Gestión de nodos (`Nodo<T>`) y punteros (*) a mano.                                           |
-| Plantillas (Templates)       | Uso de `template <typename T>` para que la lista enlazada y el manejo de lecturas sean independientes del tipo de dato (`int`, `float`, `double`).                                                    |
+| Plantillas (Templates)       | Uso de `template <typename T>` para que la lista enlazada y el manejo de lecturas sean independientes del tipo de dato (`int`, `float` ,`double`).                                                    |
 | Punteros y Gestión de Memoria    | Uso de punteros a la clase base (`SensorBase*`) para lograr polimorfismo en la lista de gestión. Implementación de la Regla de los Tres/Cinco para evitar fugas de memoria al trabajar con punteros y nodos.                                |
 | Obtención de señales desde el puerto serial (Arduino)  | Se deberá realizar la captura de señales simuladas desde un dispositivo Arduino desde el puerto serial |
 
