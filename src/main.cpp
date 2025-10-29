@@ -1,10 +1,21 @@
 #include "SensorBase.h"
+#include "SensorTemperatura.h"
+#include "SensorPresion.h"
+#include "ArduinoSerial.h"
 #include <iostream>
+#include <thread>
 
+template <typename T>
+T leerDatosArduino(ArduinoSerial* arduino,T tipo_valor);
 int main(){
-    SensorTemperatura* sensorTemp = new SensorTemperatura();
-    SensorPresion* sensorPres = new SensorPresion();
-    int opcion = 0;
+    std::cout << "\n*** Conectando el Arduino ***\n" << std::endl;
+    
+    // Intentar conectar con Arduino
+    const char* puerto = "/dev/ttyUSB0";
+    ArduinoSerial* arduino = new ArduinoSerial(puerto);
+    SensorTemperatura* sensorTemp = new SensorTemperatura("Sensor de Temperatura");
+    SensorPresion* sensorPres = new SensorPresion("Sensor de Presion");
+    int opcion = 0; 
     while(opcion!=5){
         std::cout<<"Simulación de Interacción"<<std::endl;
         std::cout<<"1. Crear Sensor (Tipo Temp - FLOAT)"<<std::endl;
@@ -16,16 +27,16 @@ int main(){
         std::cin>>opcion;
         switch(opcion){
             case 1:
-                std::cout<<"creando sensor en Temperatura..."<<std::endl;
-                sensorTemp->agregarLectura(25.0f);
+                std::cout<<"agarrando el sensor de temperatura..."<<std::endl;
+                sensorTemp->agregarLectura(arduino->procesarDatos<float>(arduino->leerLinea()));
                 break;
             case 2:
-                std::cout<<"creando sensor en Presion..."<<std::endl;
-                sensorPres->agregarLectura(1013);
+                std::cout<<"agarrando el sensor de presion..."<<std::endl;
+                sensorPres->agregarLectura(arduino->procesarDatos<int>(arduino->leerLinea()));
                 break;
             case 3:
                 std::cout<<"Registrando lectura en Sensor de Temperatura..."<<std::endl;
-                sensorTemp->imprimirinfo();
+                sensorTemp->imprimirInfo();
                 break;
             case 4:
                 std::cout<<"Ejecutando procesamiento polimórfico..."<<std::endl;
@@ -43,4 +54,16 @@ int main(){
         }
     }
 
+}
+
+template <typename T>
+void leerDatosArduino(ArduinoSerial* arduino, T tipo_valor){
+    while (true) {
+        std::string data = arduino->readLine();
+        if (!data.empty()) {
+            arduino->processData(data,T valor){
+                sensorTemp->agregarLectura(valor);
+            }
+        }
+    }
 }

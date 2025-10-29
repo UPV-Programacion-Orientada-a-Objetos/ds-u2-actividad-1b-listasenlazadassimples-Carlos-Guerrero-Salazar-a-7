@@ -84,15 +84,18 @@ public:
         }
     }
     
-    void processData(const std::string& line) {
+    template <typename T>
+    T processData(const std::string& line) {
         if (line.substr(0, 4) == "INT:") {
             int valor = std::stoi(line.substr(4));
             std::cout << "📊 Recibido INT: " << valor << std::endl;
+            return valor
             // Aquí puedes procesar el int
             
         } else if (line.substr(0, 6) == "FLOAT:") {
             float valor = std::stof(line.substr(6));
             std::cout << "📈 Recibido FLOAT: " << valor << std::endl;
+            return valor;
             // Aquí puedes procesar el float
         }
     }
