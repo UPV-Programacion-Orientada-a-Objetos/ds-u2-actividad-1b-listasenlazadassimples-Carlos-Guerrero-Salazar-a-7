@@ -14,11 +14,11 @@ void loop() {
   
   if (tipo == 0) {
     // Enviar un INT
-    int valor = random(-1000, 1000);
+    int valor = random(0, 100);
     Serial.println(valor);
   } else {
     // Enviar un FLOAT
-    float valor = random(-10000, 10000) / 100.0; // Float con 2 decimales
+    float valor = random(0, 10000) / 100.0; // Float con 2 decimales
     Serial.println(valor, 2); // 2 decimales
   }
   delay(50);

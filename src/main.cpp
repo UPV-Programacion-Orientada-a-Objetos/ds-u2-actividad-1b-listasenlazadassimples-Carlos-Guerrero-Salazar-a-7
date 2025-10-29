@@ -34,7 +34,7 @@ int main(){
                 char* linea = arduino->leerLinea();
                 if (linea != nullptr) {
                     float valor = arduino->procesarDatos<float>();
-                    ((SensorPresion*)SensorPres)->agregarLectura(valor);
+                    ((SensorTemperatura*)sensorTemp)->agregarLectura(valor);
                 }
                 break;
                 }
