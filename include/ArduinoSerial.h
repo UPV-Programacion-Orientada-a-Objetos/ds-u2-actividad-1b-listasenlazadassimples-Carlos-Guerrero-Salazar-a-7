@@ -1,3 +1,9 @@
+/**
+ * @page arduino Arduinos
+ * @file ArduinoSerial.h
+ * @brief Clase para la comunicación serie con Arduino.
+ * @ingroup hardware
+ */
 #ifndef SERIALREADER_H
 #define SERIALREADER_H
 
@@ -8,12 +14,25 @@
 #include <iostream>
 #include <cstring>
 #include <typeinfo>
+#include <cstdio> // Para sscanf
 
+/**
+ * @class ArduinoSerial
+ * @brief Genera un objeto para gestionar la comunicación serial con un dispositivo (ej. Arduino).
+ * @details Esta clase se encarga de abrir y configurar el puerto serial, leer líneas de datos
+ * y procesarlas para convertirlas a tipos numéricos (int o float) según sea necesario,
+ * manejando el polimorfismo a través de plantillas.
+ */
 class ArduinoSerial {
 private:
-    int serial_port;
-    bool conectado;
+    int serial_port;     ///< Descriptor de archivo para el puerto serial.
+    bool conectado;      ///< Indicador del estado de la conexión serial.
     
+    /**
+     * @brief Verifica si una cadena de caracteres contiene un separador decimal ('.' o ',').
+     * @param str Cadena de caracteres a analizar.
+     * @return true si la cadena contiene un punto o coma decimal, false en caso contrario.
+     */
     bool tieneDecimal(const char* str) {
         if (*str == '-' || *str == '+') {
             str++;
@@ -28,55 +47,74 @@ private:
     }
 
 public:
+    /**
+     * @brief Constructor de la clase ArduinoSerial.
+     * * Intenta abrir y configurar el puerto serial especificado.
+     * @param puerto Cadena de caracteres con la ruta al dispositivo serial (p. ej., "/dev/ttyUSB0").
+     */
     ArduinoSerial(const char* puerto = "/dev/ttyUSB0");
+
+    /**
+     * @brief Lee una línea de datos terminada en salto de línea desde el puerto serial.
+     * @return Puntero a la cadena de caracteres leída, o nullptr en caso de error o no conectado.
+     */
     char* leerLinea();
     
-    // Template implementado en el header
+    /**
+     * @brief Función plantilla para procesar y entregar un dato numérico del tipo esperado.
+     * @details Esta función llama repetidamente a leerLinea() hasta que la línea leída 
+     * pueda ser parseada como el tipo de dato especificado por la plantilla (T).
+     * * Si T es int, solo acepta números enteros. Si T es float, acepta números con o sin decimales.
+     * * @tparam T Tipo de dato esperado (generalmente int o float).
+     * @return Un dato del tipo T si la lectura y conversión son exitosas. Retorna T() (valor por defecto, ej. 0 o 0.0f) en caso de fallo de lectura.
+     */
     template <typename T>
-    T procesarDatos() {
-        while(true) {
-            char* linea = leerLinea();
-            
+    T procesarDatos() { 
+        while (true) {
+            char* linea = leerLinea(); 
+
             if (linea == nullptr) {
-                continue;
+                return T(); 
             }
-            
-            // Saltar espacios iniciales
+            // Eliminar espacios en blanco y caracteres de control al inicio
             while (*linea == ' ' || *linea == '\t' || *linea == '\r' || *linea == '\n') {
                 linea++;
             }
             
             if (*linea == '\0') {
-                continue;
+                continue; // Línea vacía, leer de nuevo
             }
             
             bool flotantes = tieneDecimal(linea);
-            
             if (typeid(T) == typeid(int)) {
                 if (flotantes) {
-                    continue; // Saltar valores con decimal si esperamos int
+                    continue;
                 }
                 int valor = 0;
                 if (sscanf(linea, "%d", &valor) == 1) {
                     return static_cast<T>(valor);
                 }
-                std::cerr << "[WARN] No es int válido: " << linea << std::endl;
             }
             else if (typeid(T) == typeid(float)) {
                 float valor = 0.0f;
                 if (sscanf(linea, "%f", &valor) == 1) { 
                     return static_cast<T>(valor);
                 }
-                std::cerr << "[WARN] No es float válido: " << linea << std::endl;
             }
-            else {
-                std::cerr << "[ERROR] Tipo no soportado" << std::endl;
-                return T();
-            }
+            continue; 
         }
     }
     
+    /**
+     * @brief Comprueba el estado de la conexión serial.
+     * @return true si el puerto serial está abierto y configurado, false en caso contrario.
+     */
     bool estaConectado() const;
+
+    /**
+     * @brief Destructor de la clase ArduinoSerial.
+     * * Cierra el descriptor de archivo del puerto serial si está abierto.
+     */
     ~ArduinoSerial();
 };
 

@@ -72,6 +72,8 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/proyectomain.dir/clean
+clean: CMakeFiles/doc.dir/clean
+	$(CMAKE_COMMAND) -P CMakeFiles/cmake_directory_clean.cmake
 .PHONY : clean
 
 #=============================================================================
@@ -81,7 +83,7 @@ clean: CMakeFiles/proyectomain.dir/clean
 CMakeFiles/proyectomain.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/proyectomain.dir/build.make CMakeFiles/proyectomain.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/proyectomain.dir/build.make CMakeFiles/proyectomain.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/carlos/github/said/Actividad_arduino_fuck_carlos/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target proyectomain"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/carlos/github/said/Actividad_arduino_fuck_carlos/build/CMakeFiles --progress-num=2,3,4,5,6,7 "Built target proyectomain"
 .PHONY : CMakeFiles/proyectomain.dir/all
 
 # Build rule for subdir invocation for target.
@@ -99,6 +101,32 @@ proyectomain: CMakeFiles/proyectomain.dir/rule
 CMakeFiles/proyectomain.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/proyectomain.dir/build.make CMakeFiles/proyectomain.dir/clean
 .PHONY : CMakeFiles/proyectomain.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/doc.dir
+
+# All Build rule for target.
+CMakeFiles/doc.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/doc.dir/build.make CMakeFiles/doc.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/doc.dir/build.make CMakeFiles/doc.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/carlos/github/said/Actividad_arduino_fuck_carlos/build/CMakeFiles --progress-num=1 "Built target doc"
+.PHONY : CMakeFiles/doc.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/doc.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/carlos/github/said/Actividad_arduino_fuck_carlos/build/CMakeFiles 1
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/doc.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/carlos/github/said/Actividad_arduino_fuck_carlos/build/CMakeFiles 0
+.PHONY : CMakeFiles/doc.dir/rule
+
+# Convenience name for target.
+doc: CMakeFiles/doc.dir/rule
+.PHONY : doc
+
+# clean rule for target.
+CMakeFiles/doc.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/doc.dir/build.make CMakeFiles/doc.dir/clean
+.PHONY : CMakeFiles/doc.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

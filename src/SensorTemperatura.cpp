@@ -1,20 +1,36 @@
+/**
+ * @file SensorTemperatura.cpp
+ * @brief Implementación de la clase SensorTemperatura.
+ * @details Esta clase hereda de SensorBase y proporciona funcionalidades específicas para sensores de temperatura.
+ * @author Carlos Gael Guerrero Salazar
+ * @date 2025-10-29
+ * @version 1.0
+ */
 #include "SensorTemperatura.h"
 
-// Constructor
+/**
+ * @brief Constructor de la clase SensorTemperatura.
+ * @param nombre Nombre del sensor.
+ */
 SensorTemperatura::SensorTemperatura(const char* nombre) 
     : SensorBase(nombre) {
 }
 
-// Agregar lectura de temperatura
+/**
+ * @brief Agrega una lectura de temperatura al sensor.
+ * @param valor Valor de la lectura a agregar.
+ * @details Utiliza el método agregar de ListaSensor para añadir la lectura, por lo cual no necesita un template.
+ */
 void SensorTemperatura::agregarLectura(float valor) {
     lecturas.agregar(valor);
-    std::cout << "Lectura agregada a " << nombre << ": " << valor << "°C" << std::endl;
 }
 
-// Imprimir información del sensor
+/**
+    * @brief Imprime la información del sensor de temperatura.
+    * @details Con el dato privado de cabeza de lista, recorre toda la lista de nodos dentro de ella para mostrarlas
+    */
 void SensorTemperatura::imprimirInfo() const {
-    std::cout << "\n=== Sensor: " << nombre << " (Temperatura) ===" << std::endl;
-    
+    std::cout << "Lecturas de Temperatura: ";
     if (lecturas.estaVacia()) {
         std::cout << "No hay lecturas registradas." << std::endl;
         return;
@@ -29,7 +45,11 @@ void SensorTemperatura::imprimirInfo() const {
     std::cout << std::endl;
 }
 
-// Procesar lecturas: elimina el valor mínimo y calcula promedio
+/**
+ * @brief Procesa las lecturas de temperatura.
+ * @details Esto hace dos procesos busca los el nodo de sus valores más bajo y lo borra para luego, calcular el promedio de las lecturas y lo muestra por consola.
+ * El sensor temperatura hace polimorfismo aquí, es una accion unica que comparte nombre en sensorpresion pero con diferente acción
+ */
 void SensorTemperatura::procesarLectura() {
     std::cout << "\n>>> Procesando lecturas de " << nombre << " <<<" << std::endl;
     
@@ -83,7 +103,9 @@ void SensorTemperatura::procesarLectura() {
     }
 }
 
-// Destructor
+/**
+ * @brief destructor del sensor
+ */
 SensorTemperatura::~SensorTemperatura() {
     std::cout << "Destruyendo sensor: " << nombre << std::endl;
 }

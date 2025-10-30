@@ -1,0 +1,26 @@
+# --- Parámetros de Configuración Básicos (Reemplazados por CMake) ---
+
+PROJECT_NAME           = "@PROJECT_NAME@"
+PROJECT_NUMBER         = "@PROJECT_VERSION@"
+OUTPUT_DIRECTORY       = @CMAKE_CURRENT_BINARY_DIR@/doc/html
+
+# La clave: Asegúrate de que Doxygen escanee TODOS los directorios con código.
+INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/include \
+                         @CMAKE_CURRENT_SOURCE_DIR@/src \
+                         @CMAKE_CURRENT_SOURCE_DIR@/main.cpp
+RECURSIVE              = YES
+FILE_PATTERNS          = *.c *.cpp *.h *.hpp
+
+# --- Soluciones Clave para Forzar la Extracción de Código ---
+
+# 1. FORZAR la documentación de todas las entidades, incluso si no tienen bloques de comentarios Doxygen.
+# Esto genera páginas para clases, funciones y variables que de otra forma se omitirían.
+EXTRACT_ALL            = YES
+
+# 2. Extraer miembros privados y estáticos
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+
+# 3. Habilitar el preprocesador C++ (recomendado para proyectos C++)
+ENABLE_PREPROCESSING   = YES
+QUIET = NO

@@ -129,6 +129,19 @@ proyectomain/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/proyectomain.dir/build.make CMakeFiles/proyectomain.dir/build
 .PHONY : proyectomain/fast
 
+#=============================================================================
+# Target rules for targets named doc
+
+# Build rule for target.
+doc: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 doc
+.PHONY : doc
+
+# fast build rule for target.
+doc/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/doc.dir/build.make CMakeFiles/doc.dir/build
+.PHONY : doc/fast
+
 src/ArduinoSerial.o: src/ArduinoSerial.cpp.o
 .PHONY : src/ArduinoSerial.o
 
@@ -257,6 +270,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... doc"
 	@echo "... proyectomain"
 	@echo "... src/ArduinoSerial.o"
 	@echo "... src/ArduinoSerial.i"

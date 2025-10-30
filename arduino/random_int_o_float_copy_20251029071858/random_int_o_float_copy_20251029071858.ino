@@ -21,5 +21,5 @@ void loop() {
     float valor = random(0, 10000) / 100.0; // Float con 2 decimales
     Serial.println(valor, 2); // 2 decimales
   }
-  delay(50);
+  delay(1000);
 }

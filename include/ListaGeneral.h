@@ -3,31 +3,44 @@
 
 #include "SensorBase.h"
 #include <iostream>
+#include <cstring> // Necesario para strcmp
 
 /**
  * @brief Lista enlazada NO genérica para gestión polimórfica de sensores
- * 
- * Almacena punteros a SensorBase* permitiendo polimorfismo.
- * Es responsable de liberar la memoria de los sensores.
+ * @details Almacena punteros a SensorBase* permitiendo el polimorfismo.
+ * Es responsable de liberar la memoria de los objetos de sensor
+ * apuntados al ser destruida (propiedad de la lista).
  */
 class ListaGeneral {
 private:
-    // Nodo específico para punteros a SensorBase
+    /**
+     * @brief Estructura de nodo para la lista enlazada.
+     * * Almacena un puntero a un objeto derivado de SensorBase y el puntero al siguiente nodo.
+     */
     struct Nodo {
-        SensorBase* sensor;  // Puntero a clase base (polimorfismo)
-        Nodo* siguiente;
+        SensorBase* sensor;  ///< Puntero a clase base (polimorfismo).
+        Nodo* siguiente;     ///< Puntero al siguiente nodo en la lista.
         
+        /**
+         * @brief Constructor del nodo.
+         * @param s Puntero al objeto SensorBase o derivado a almacenar.
+         */
         Nodo(SensorBase* s) : sensor(s), siguiente(nullptr) {}
     };
     
-    Nodo* cabeza;
-    int cantidad;
+    Nodo* cabeza; ///< Puntero al primer nodo de la lista.
+    int cantidad; ///< Número actual de sensores en la lista.
 
 public:
-    // Constructor
+    /**
+     * @brief Constructor por defecto.
+     */
     ListaGeneral() : cabeza(nullptr), cantidad(0) {}
     
-    // Destructor: libera TODOS los sensores
+    /**
+     * @brief Destructor.
+     * * Recorre la lista, libera la memoria de cada objeto SensorBase y luego la del propio nodo.
+     */
     ~ListaGeneral() {
         
         while (cabeza) {
@@ -36,16 +49,18 @@ public:
             
             std::cout << "  [Destructor] Liberando sensor: " 
                       << temp->sensor->obtenerNombre() << std::endl;
-            
-            // ¡CRÍTICO! Llamar a delete invoca el destructor virtual
-            delete temp->sensor;  // Polimorfismo: llama al destructor correcto
-            delete temp;
+            delete temp->sensor; // Liberar la memoria del sensor (polimorfismo)
+            delete temp;         // Liberar la memoria del nodo
         }
         
         std::cout << "[ListaGeneral] Memoria liberada completamente\n" << std::endl;
     }
     
-    // Agregar sensor a la lista
+    /**
+     * @brief Agrega un sensor al final de la lista.
+     * * La lista toma la propiedad del puntero sensor y es responsable de su liberación.
+     * @param sensor Puntero al objeto SensorBase o derivado a agregar.
+     */
     void agregar(SensorBase* sensor) {
         Nodo* nuevoNodo = new Nodo(sensor);
         
@@ -64,7 +79,11 @@ public:
                   << "' agregado. Total: " << cantidad << std::endl;
     }
     
-    // Buscar sensor por nombre
+    /**
+     * @brief Busca un sensor por su nombre.
+     * @param nombre Cadena de caracteres con el nombre del sensor a buscar.
+     * @return Puntero al objeto SensorBase si es encontrado, o nullptr si no existe.
+     */
     SensorBase* buscar(const char* nombre) {
         Nodo* actual = cabeza;
         while (actual) {
@@ -77,7 +96,10 @@ public:
         return nullptr;  // No encontrado
     }
     
-    // Procesar TODOS los sensores (POLIMORFISMO EN ACCIÓN)
+    /**
+     * @brief Itera sobre la lista y llama polimórficamente a procesarLectura() 
+     * de cada sensor.
+     */
     void procesarTodos() {
         std::cout << "\n=== Procesamiento Polimórfico ===" << std::endl;
         
@@ -92,7 +114,7 @@ public:
         while (actual) {
             std::cout << "\n[" << contador << "] Procesando: " 
                       << actual->sensor->obtenerNombre() << std::endl;
-            actual->sensor->procesarLectura();
+            actual->sensor->procesarLectura(); // Llamada polimórfica
             
             actual = actual->siguiente;
             contador++;
@@ -101,7 +123,10 @@ public:
         std::cout << "\n=== Procesamiento completado ===" << std::endl;
     }
     
-    // Imprimir información de TODOS los sensores
+    /**
+     * @brief Itera sobre la lista y llama polimórficamente a imprimirInfo() 
+     * de cada sensor.
+     */
     void imprimirTodos() const {
         std::cout << "\n=== Lista de Sensores Registrados ===" << std::endl;
         
@@ -115,7 +140,7 @@ public:
         
         while (actual) {
             std::cout << "\n[" << contador << "] ";
-            actual->sensor->imprimirInfo();
+            actual->sensor->imprimirInfo(); // Llamada polimórfica
             
             actual = actual->siguiente;
             contador++;
@@ -124,12 +149,18 @@ public:
         std::cout << "\nTotal de sensores: " << cantidad << std::endl;
     }
     
-    // Verificar si está vacía
+    /**
+     * @brief Verifica si la lista está vacía.
+     * @return true si no hay sensores, false en caso contrario.
+     */
     bool estaVacia() const {
         return cabeza == nullptr;
     }
     
-    // Obtener cantidad de sensores
+    /**
+     * @brief Obtiene la cantidad de sensores en la lista.
+     * @return El número de sensores.
+     */
     int getCantidad() const {
         return cantidad;
     }

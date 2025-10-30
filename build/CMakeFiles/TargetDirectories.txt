@@ -1,3 +1,4 @@
 /home/carlos/github/said/Actividad_arduino_fuck_carlos/build/CMakeFiles/proyectomain.dir
+/home/carlos/github/said/Actividad_arduino_fuck_carlos/build/CMakeFiles/doc.dir
 /home/carlos/github/said/Actividad_arduino_fuck_carlos/build/CMakeFiles/edit_cache.dir
 /home/carlos/github/said/Actividad_arduino_fuck_carlos/build/CMakeFiles/rebuild_cache.dir

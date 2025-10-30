@@ -611,9 +611,12 @@ CMakeFiles/proyectomain.dir/src/main.cpp.o: /home/carlos/github/said/Actividad_a
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
+  /usr/include/c++/13/atomic \
   /usr/include/c++/13/backward/binders.h \
   /usr/include/c++/13/bits/alloc_traits.h \
   /usr/include/c++/13/bits/allocator.h \
+  /usr/include/c++/13/bits/atomic_base.h \
+  /usr/include/c++/13/bits/atomic_lockfree_defines.h \
   /usr/include/c++/13/bits/basic_ios.h \
   /usr/include/c++/13/bits/basic_ios.tcc \
   /usr/include/c++/13/bits/basic_string.h \
@@ -653,6 +656,7 @@ CMakeFiles/proyectomain.dir/src/main.cpp.o: /home/carlos/github/said/Actividad_a
   /usr/include/c++/13/bits/refwrap.h \
   /usr/include/c++/13/bits/requires_hosted.h \
   /usr/include/c++/13/bits/std_abs.h \
+  /usr/include/c++/13/bits/std_mutex.h \
   /usr/include/c++/13/bits/std_thread.h \
   /usr/include/c++/13/bits/stl_algobase.h \
   /usr/include/c++/13/bits/stl_construct.h \
@@ -665,6 +669,7 @@ CMakeFiles/proyectomain.dir/src/main.cpp.o: /home/carlos/github/said/Actividad_a
   /usr/include/c++/13/bits/streambuf_iterator.h \
   /usr/include/c++/13/bits/stringfwd.h \
   /usr/include/c++/13/bits/this_thread_sleep.h \
+  /usr/include/c++/13/bits/unique_lock.h \
   /usr/include/c++/13/bits/unique_ptr.h \
   /usr/include/c++/13/bits/uses_allocator.h \
   /usr/include/c++/13/bits/utility.h \
@@ -692,6 +697,7 @@ CMakeFiles/proyectomain.dir/src/main.cpp.o: /home/carlos/github/said/Actividad_a
   /usr/include/c++/13/iostream \
   /usr/include/c++/13/istream \
   /usr/include/c++/13/limits \
+  /usr/include/c++/13/mutex \
   /usr/include/c++/13/new \
   /usr/include/c++/13/ostream \
   /usr/include/c++/13/ratio \
@@ -842,9 +848,15 @@ CMakeFiles/proyectomain.dir/src/main.cpp.o: /home/carlos/github/said/Actividad_a
 
 /usr/include/c++/13/ctime:
 
+/usr/include/c++/13/mutex:
+
+/usr/include/c++/13/bits/unique_lock.h:
+
 /usr/include/c++/13/bits/parse_numbers.h:
 
 /usr/include/c++/13/bits/chrono.h:
+
+/usr/include/c++/13/atomic:
 
 /home/carlos/github/said/Actividad_arduino_fuck_carlos/include/ListaGeneral.h:
 
@@ -961,6 +973,8 @@ CMakeFiles/proyectomain.dir/src/main.cpp.o: /home/carlos/github/said/Actividad_a
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
 /usr/include/c++/13/bits/move.h:
+
+/usr/include/c++/13/bits/std_mutex.h:
 
 /usr/include/c++/13/bits/stl_construct.h:
 
@@ -1256,6 +1270,8 @@ CMakeFiles/proyectomain.dir/src/main.cpp.o: /home/carlos/github/said/Actividad_a
 
 /usr/include/unistd.h:
 
+/usr/include/c++/13/bits/atomic_lockfree_defines.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
 /usr/include/x86_64-linux-gnu/asm/errno.h:
@@ -1263,6 +1279,8 @@ CMakeFiles/proyectomain.dir/src/main.cpp.o: /home/carlos/github/said/Actividad_a
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+/usr/include/c++/13/bits/atomic_base.h:
 
 /usr/include/c++/13/bits/new_allocator.h:
 

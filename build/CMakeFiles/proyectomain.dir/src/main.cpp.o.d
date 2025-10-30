@@ -155,7 +155,11 @@ CMakeFiles/proyectomain.dir/src/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
  /usr/include/c++/13/limits /usr/include/c++/13/ctime \
- /usr/include/c++/13/bits/parse_numbers.h \
+ /usr/include/c++/13/bits/parse_numbers.h /usr/include/c++/13/atomic \
+ /usr/include/c++/13/bits/atomic_base.h \
+ /usr/include/c++/13/bits/atomic_lockfree_defines.h \
+ /usr/include/c++/13/mutex /usr/include/c++/13/bits/std_mutex.h \
+ /usr/include/c++/13/bits/unique_lock.h \
  /home/carlos/github/said/Actividad_arduino_fuck_carlos/include/SensorBase.h \
  /usr/include/c++/13/cstring /usr/include/string.h /usr/include/strings.h \
  /home/carlos/github/said/Actividad_arduino_fuck_carlos/include/ListaSensor.h \
