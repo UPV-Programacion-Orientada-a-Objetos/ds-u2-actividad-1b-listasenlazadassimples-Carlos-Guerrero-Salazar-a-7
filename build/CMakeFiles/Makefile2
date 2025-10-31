@@ -73,7 +73,6 @@ preinstall:
 # The main recursive "clean" target.
 clean: CMakeFiles/proyectomain.dir/clean
 clean: CMakeFiles/doc.dir/clean
-	$(CMAKE_COMMAND) -P CMakeFiles/cmake_directory_clean.cmake
 .PHONY : clean
 
 #=============================================================================

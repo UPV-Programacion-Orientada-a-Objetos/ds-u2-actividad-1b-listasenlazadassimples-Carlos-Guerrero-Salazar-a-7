@@ -9,8 +9,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "/home/carlos/github/said/Actividad_arduino_fuck_carlos/CMakeLists.txt"
   "/home/carlos/github/said/Actividad_arduino_fuck_carlos/Doxyfile.in"
-  "CMakeDoxyfile.in"
-  "CMakeDoxygenDefaults.cmake"
   "CMakeFiles/3.28.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.28.3/CMakeSystem.cmake"
   "/usr/share/cmake-3.28/Modules/CMakeCXXInformation.cmake"
@@ -42,7 +40,6 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "Doxyfile"
-  "Doxyfile.doc"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 

@@ -66,11 +66,9 @@ include CMakeFiles/doc.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/doc.dir/progress.make
 
-CMakeFiles/doc: Doxyfile.doc
-CMakeFiles/doc: Doxyfile
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/carlos/github/said/Actividad_arduino_fuck_carlos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generate API documentation for doc"
-	cd /home/carlos/github/said/Actividad_arduino_fuck_carlos && /usr/bin/cmake -E make_directory /home/carlos/github/said/Actividad_arduino_fuck_carlos/build
-	cd /home/carlos/github/said/Actividad_arduino_fuck_carlos && /usr/bin/doxygen /home/carlos/github/said/Actividad_arduino_fuck_carlos/build/Doxyfile.doc
+CMakeFiles/doc:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/carlos/github/said/Actividad_arduino_fuck_carlos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generando documentación con Doxygen"
+	cd /home/carlos/github/said/Actividad_arduino_fuck_carlos && /usr/bin/doxygen /home/carlos/github/said/Actividad_arduino_fuck_carlos/build/Doxyfile
 
 doc: CMakeFiles/doc
 doc: CMakeFiles/doc.dir/build.make
